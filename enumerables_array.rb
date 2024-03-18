@@ -55,11 +55,23 @@ class Array
         return true
     end
 
+    def my_flatten
+
+        if self == []
+
+        flat = []
+
+        self.each do |ele|
+            if ele.class != Array
+               flat << ele
+               self.delete(ele)
+            else
+                self.my_flatten
+            end
+        end
+        flat
+    end
 
 end
 
-a = [1, 2, 3]
-p a.my_any? { |num| num > 1 } # => true
-p a.my_any? { |num| num == 4 } # => false
-p a.my_all? { |num| num > 1 } # => false
-p a.my_all? { |num| num < 4 } # => true
+p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
