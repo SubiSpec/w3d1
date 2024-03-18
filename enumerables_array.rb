@@ -37,19 +37,29 @@ class Array
 
 
     def my_any?(&prc)
-
+        # return true if self.any? { |ele| prc.call(ele) }
         self.each do |ele|
             if prc.call(ele)
-                 true
+                return true
             end
         end
         return false
     end
 
+    def my_all?(&prc)
+        self.each do |ele|
+            if !prc.call(ele)
+                return false
+            end
+        end
+        return true
+    end
+
+
 end
 
 a = [1, 2, 3]
-a.my_any? { |num| num > 1 } # => true
-a.my_any? { |num| num == 4 } # => false
-# a.my_all? { |num| num > 1 } # => false
-# a.my_all? { |num| num < 4 } # => true
+p a.my_any? { |num| num > 1 } # => true
+p a.my_any? { |num| num == 4 } # => false
+p a.my_all? { |num| num > 1 } # => false
+p a.my_all? { |num| num < 4 } # => true
