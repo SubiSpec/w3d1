@@ -73,12 +73,31 @@ class Array
 
     def my_zip(*arg)
         arr = []
+
             arg.each do |array|
-               arr << array.length = 1
+                sub_array = []
+
+                self.each do |ele|
+                    sub_array << ele
+                    
+                    (0...array.length).each do |index|
+                        sub_array << array[index] 
+                    end
+
+                    arr << sub_array
+                end
             end
-
-
+        p arr
+    end
 
 end
 
-# p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+a = [ 4, 5, 6 ]
+b = [ 7, 8, 9 ]
+[1, 2, 3].my_zip(a, b) # => [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+# a.my_zip([1,2], [8])   # => [[4, 1, 8], [5, 2, nil], [6, nil, nil]]
+# [1, 2].my_zip(a, b)    # => [[1, 4, 7], [2, 5, 8]]
+
+# c = [10, 11, 12]
+# d = [13, 14, 15]
+# [1, 2].my_zip(a, b, c, d)    # => [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14]]
