@@ -55,23 +55,30 @@ class Array
         return true
     end
 
-    def my_flatten
+    # def my_flatten
 
-        if self == []
+    #     return flat if self == []
 
-        flat = []
+    #     flat = []
 
-        self.each do |ele|
-            if ele.class != Array
-               flat << ele
-               self.delete(ele)
-            else
-                self.my_flatten
+    #     self.each do |ele|
+    #         # debugger
+    #         if ele.class != Array
+    #            flat << ele
+    #         else
+    #             ele.my_flatten
+    #         end
+    #     end
+    # end
+
+    def my_zip(*arg)
+        arr = []
+            arg.each do |array|
+               arr << array.length = 1
             end
-        end
-        flat
-    end
+
+
 
 end
 
-p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
+# p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
