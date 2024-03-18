@@ -72,22 +72,10 @@ class Array
     # end
 
     def my_zip(*arg)
-        arr = []
+        sub_array = Array.new(self.length) { Array.new(arg.length + 1, nil) }
 
-            arg.each do |array|
-                sub_array = []
-
-                self.each do |ele|
-                    sub_array << ele
-                    
-                    (0...array.length).each do |index|
-                        sub_array << array[index] 
-                    end
-
-                    arr << sub_array
-                end
-            end
-        p arr
+        (0...self.length).each do |idx|
+            sub
     end
 
 end
