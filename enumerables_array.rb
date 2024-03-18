@@ -1,36 +1,29 @@
+require 'byebug'
 class Array
     def my_each(&prc)
-        self.map { |ele| prc.call(ele) }
+        i = 0 
+        while i < self.length
+            prc.call(self[i])
+            i += 1
+        end
+        self
     end
 
     def my_select(&prc)
 
         result = []
 
-        self.my_each(prc).each do |ele|
+        self.my_each(&prc).each do |ele|
+            # debugger
             if prc.call(ele)
                 result << ele
             end
         end
+        result
     end
 
 end
 
-return_value = [1, 2, 3].my_each do |num|
-    puts num
-   end.my_each do |num|
-    puts num
-   end
-   # => 1
-   #    2
-   #    3
-   #    1
-   #    2
-   #    3
-   
-   p return_value  # => [1, 2, 3]
-
-
-# a = [1, 2, 3]
-# a.my_select { |num| num > 1 } # => [2, 3]
-# a.my_select { |num| num == 4 } # => []
+a = [1, 2, 3]
+a.my_select { |num| num > 1 } # => [2, 3]
+a.my_select { |num| num == 4 } # => []
