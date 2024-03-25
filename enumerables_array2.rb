@@ -79,21 +79,61 @@ class Array
         els
     end
 
-    def my_rotate(n = 1)
-        rotated = []
-         
-        if n > 0
-            n.times do |el| 
-                rotated << self.shift
-            end
-        elsif n < 0
-            n*-1.times do |el|
-                rotated << 
+    # def my_rotate(n = 1) 
+    #     if n > 0 
+    #         i = 0
+    #         while i < n
+    #             self.push(self.shift)
+    #             i += 1
+    #         end
+    #     elsif n < 0
+    #         i = 0
+    #         while i >= n
+    #             self.unshift(self.pop)
+    #             i -= 1
+    #         end
+    #     end
+    #     p self
+    # end
 
-        rotated
+    def my_rotate(pos = 1)
+        split_idx = pos % self.length
+
+        self.drop(split_idx) + self.take(split_idx)
+    end
+
+    def my_join(separator = '')
+        joined = ''
+        self.each do |el|
+            joined += el + separator
+        end
+        p joined
+    end
+
+    def my_reverse
+        reversed = []
+        self.each do |el|
+            reversed.unshift(el)
+        end
+        p reversed
     end
 
 end
+
+
+[ "a", "b", "c" ].my_reverse   #=> ["c", "b", "a"]
+[ 1 ].my_reverse               #=> [1]
+
+# a = [ "a", "b", "c", "d" ]
+# a.my_join         # => "abcd"
+# a.my_join("$")    # => "a$b$c$d"
+
+
+# a = [ "a", "b", "c", "d" ]
+# a.my_rotate         #=> ["b", "c", "d", "a"]
+# a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+# a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+# a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
 # a = [ 4, 5, 6 ]
 # b = [ 7, 8, 9 ]
